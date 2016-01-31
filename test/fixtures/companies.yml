@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ticker: MyString
+  name: MyString
+  year: MyString
+  fixed_asset: 9.99
+  current_asset: 9.99
+  long-term_liabilities: 9.99
+  short-term_liabilities: 9.99
+  revenue: 9.99
+  operating_income: 9.99
+  ibit: 9.99
+  net_income: 9.99
+  operation_cashflow: 9.99
+  financing_cashflow: 9.99
+  investment_cashflow: 9.99
+
+two:
+  ticker: MyString
+  name: MyString
+  year: MyString
+  fixed_asset: 9.99
+  current_asset: 9.99
+  long-term_liabilities: 9.99
+  short-term_liabilities: 9.99
+  revenue: 9.99
+  operating_income: 9.99
+  ibit: 9.99
+  net_income: 9.99
+  operation_cashflow: 9.99
+  financing_cashflow: 9.99
+  investment_cashflow: 9.99
