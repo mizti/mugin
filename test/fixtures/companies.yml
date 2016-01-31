@@ -6,8 +6,8 @@ one:
   year: MyString
   fixed_asset: 9.99
   current_asset: 9.99
-  long-term_liabilities: 9.99
-  short-term_liabilities: 9.99
+  long_term_liabilities: 9.99
+  short_term_liabilities: 9.99
   revenue: 9.99
   operating_income: 9.99
   ibit: 9.99
@@ -22,8 +22,8 @@ two:
   year: MyString
   fixed_asset: 9.99
   current_asset: 9.99
-  long-term_liabilities: 9.99
-  short-term_liabilities: 9.99
+  long_term_liabilities: 9.99
+  short_term_liabilities: 9.99
   revenue: 9.99
   operating_income: 9.99
   ibit: 9.99

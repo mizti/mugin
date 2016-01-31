@@ -6,8 +6,8 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :year
       t.decimal :fixed_asset
       t.decimal :current_asset
-      t.decimal :long-term_liabilities
-      t.decimal :short-term_liabilities
+      t.decimal :long_term_liabilities
+      t.decimal :short_term_liabilities
       t.decimal :revenue
       t.decimal :operating_income
       t.decimal :ibit
