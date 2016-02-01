@@ -8,6 +8,7 @@ one:
   current_asset: 9.99
   long_term_liabilities: 9.99
   short_term_liabilities: 9.99
+  equity: 9.99
   revenue: 9.99
   operating_income: 9.99
   ibit: 9.99
@@ -24,6 +25,7 @@ two:
   current_asset: 9.99
   long_term_liabilities: 9.99
   short_term_liabilities: 9.99
+  equity: 9.99
   revenue: 9.99
   operating_income: 9.99
   ibit: 9.99

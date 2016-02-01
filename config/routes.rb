@@ -2,7 +2,8 @@ Mugin::Application.routes.draw do
   get "company/index"
 
   get "company/show"
-  get "company/show/:companyname" => "company#show"
+  get "company/show/:ticker" => "company#show"
+  get "company/search"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
