@@ -1,4 +1,5 @@
 class CompanyController < ApplicationController
+  respond_to :json
   def index
   end
 
@@ -6,16 +7,25 @@ class CompanyController < ApplicationController
   end
 
   def show
-    if params[:ticker] == '1111'
-      # rails4
-      #@company = Company.find_by(:ticker => '1111')
-      # rails3
+    @company = {}
+    if params!=nil then
       @company = Company.where(ticker: params[:ticker]).first
-    elsif params[:ticker] == '2222'
-      # rails4
-      #@company = Company.find_by(:ticker => '1111')
-      # rails3
-      @company = Company.find(params[:ticker]).first
+    end
+    if @company == nil then
+      render :file => "#{Rails.root}/public/404.html",  :status => 404
     end
   end
+
+  def data
+    @company = {}
+    if params[:ticker] != nil and params[:year] != nil
+      @company = Company.where(ticker: params[:ticker]).where(year: params[:year]).first
+      if @company == nil then 
+        render :nothing => true
+      else
+        render json:  @company #idとか余分な要素も返却されてるのを直す
+      end
+    end
+  end
+
 end
