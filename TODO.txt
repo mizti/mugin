@@ -1,0 +1,7 @@
+TODO:
+ticker指定で単年分のjsonを返すページを作成する
+dbにデータを追加する
+ticker/year指定で指定年のjsonを返すページを作る
+tickerか名前から検索できる箱/検索結果を表示する画面を作る
+選択したticker/yearをセッションに配列で保存してみる
+bootstrapを適用してみる

@@ -1,5 +1,10 @@
-<h1><%= @company[:name] %></h1>
-<p><%= @company[:name] %></p>
-<ul>
-  <li>Year : <%= @company[:year] %></li>
-</ul>
+<ul id="output"></ul>
+<%= javascript_tag do %>
+  
+  var data_source = <%= session["data"].to_json.html_safe %>;
+  data = [];
+  for(var i in data_source){
+    $("#output").append("<li>" + data_source[i].ticker + "</li>");
+  }
+  JHR("show/1111/year/2015", [], function(){});
+<% end %>

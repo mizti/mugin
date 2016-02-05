@@ -8,12 +8,15 @@ class CompanyController < ApplicationController
 
   def show
     @company = {}
-    if params!=nil then
-      @company = Company.where(ticker: params[:ticker]).first
+  end
+
+  def add
+    if session["data"] == nil or session["data"].class != Array then
+      session["data"] = []
     end
-    if @company == nil then
-      render :file => "#{Rails.root}/public/404.html",  :status => 404
-    end
+    hash = {"ticker" => "1111", "year" => "2015"}
+    session["data"].push hash
+    redirect_to("/company/show")
   end
 
   def data
