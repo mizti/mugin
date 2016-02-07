@@ -1,7 +1,15 @@
 TODO:
-ticker指定で単年分のjsonを返すページを作成する
+・データ集め
 dbにデータを追加する
-ticker/year指定で指定年のjsonを返すページを作る
+
+・Site
 tickerか名前から検索できる箱/検索結果を表示する画面を作る
-選択したticker/yearをセッションに配列で保存してみる
+addした後、グラフを実装する
 bootstrapを適用してみる
+全体のレイアウトを設計する
+
+・d3
+exitの実装
+x scaleの実装
+
+・
