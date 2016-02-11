@@ -6,8 +6,6 @@ var JHR = function ( url, data, fun ) {
 	xhr.setRequestHeader( 'Content-Type', 'application/json' );
 	xhr.addEventListener( 'load',  function () {
 		xhr.responseJSON = JSON.parse( xhr.responseText );
-		console.log(xhr)
-		console.log(xhr.responseJSON)
 		fun( xhr.responseJSON, xhr );
 	});
 	xhr.send( JSON.stringify(data) );

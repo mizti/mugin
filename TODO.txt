@@ -1,4 +1,5 @@
 TODO:
+・当面のdebug long-term_liabilities -> long_term_liabilitiesに
 ・データ集め
 dbにデータを追加する
 
@@ -9,7 +10,12 @@ bootstrapを適用してみる
 全体のレイアウトを設計する
 
 ・d3
+削除ボタンの実装
 exitの実装
-x scaleの実装
+縦軸の実装
+ラベルの実装
 
-・
+
+ページの役割整理
+show
+

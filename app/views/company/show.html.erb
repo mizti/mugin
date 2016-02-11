@@ -1,9 +1,16 @@
+#このページですること
+#セッションからdata_sourceにtickerとyearの対を読み込む
+#それぞれのticker, yearに対して、JHRでjsonを読みだしてdatasetにpushする
+
 <ul id="output"></ul>
+<%= javascript_include_tag "d3statement" %>
+
 <%= javascript_tag do %>
   var data_source = <%= session["data"].to_json.html_safe %>;
+  console.log(data_source)
   for(var i in data_source){
     $("#output").append("<li>" + data_source[i].ticker + "</li>");
   }
   dataset = [];
-  JHR("show/1111/year/2015", [], function(response, xhr){ dataset.push(response) });
+  JHR("1111/year/2015", [], function(response, xhr){ dataset.push(response); appendData();});
 <% end %>
