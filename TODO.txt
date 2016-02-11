@@ -1,8 +1,10 @@
 TODO:
-・当面のdebug long-term_liabilities -> long_term_liabilitiesに
-・データ集め
-dbにデータを追加する
-
+・当面のdebug
+  - データの順にgraphが並ぶように工夫する （読み込み完了タイミングで順番が変わらないように）
+・データ
+dbにseedデータを追加する
+データソースを探すhttp://ke.kabupro.jp/が使えるかも？
+あと、最悪四季報を買えばhttp://hatakazu.hatenablog.com/entry/2012/06/14/212847 とかでいけるかも
 ・Site
 tickerか名前から検索できる箱/検索結果を表示する画面を作る
 addした後、グラフを実装する
@@ -14,8 +16,4 @@ bootstrapを適用してみる
 exitの実装
 縦軸の実装
 ラベルの実装
-
-
-ページの役割整理
-show
 

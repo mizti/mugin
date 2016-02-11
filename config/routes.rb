@@ -3,7 +3,8 @@ Mugin::Application.routes.draw do
 
   get "company/show" # グラフを見せる.セッションから対象を抜き出して、jhrで投げる。
   get "company/show/:ticker" => "company#show" # これは使わない
-  post "company/show/:ticker/year/:year" => "company#data" # 指定に対応するjsonデータを返却する
+  # post "company/:ticker/year/:year" => "company#data" # 指定に対応するjsonデータを返却する
+  get "company/:ticker/year/:year" => "company#data" # 指定に対応するjsonデータを返却する
   get "company/search" #指定された条件を満たすデータ候補を表示する
   get "company/add/:ticker/year/:year" => "company#add" #指定されたticker/yearをセッションに追加して返却
   get "company/add" => "company#add"

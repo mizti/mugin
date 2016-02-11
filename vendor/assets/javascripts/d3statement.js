@@ -13,13 +13,7 @@ d3.select("body")
     .attr("class", "graph_canvas")
     .style("background-color", "aliceblue")
 
-// appendData();
-
 var appendData = function append(){
-  console.log("append")
-  console.log(dataset)
-  console.log(h)
-  console.log("append--")
 
   // scaleX
   var scaleX = d3.scale.linear();
@@ -39,7 +33,7 @@ var appendData = function append(){
 
   // y 
   var padding_bottom = 30;
-  var padding_top = 10;
+  var padding_top = 40;
   
   // scaleY
   var scaleY = d3.scale.linear();
@@ -63,7 +57,6 @@ var appendData = function append(){
 
   scaleY.domain([0, domainMax - domainMin]);
   scaleY.range([0, h - padding_bottom - padding_top]);
-  console.log(scaleY(50))
   var eS = d3.select(".graph_canvas")
               .selectAll("rect")
               .data(dataset, function(d){return d.ticker + d.year}).enter();
@@ -71,8 +64,8 @@ var appendData = function append(){
   eS.append("line").attr("class", "zero");
   eS.append("rect").attr("class", "fixed_asset");
   eS.append("rect").attr("class", "current_asset");
-  eS.append("rect").attr("class", "long-term_liabilities");
-  eS.append("rect").attr("class", "short-term_liabilities");
+  eS.append("rect").attr("class", "long_term_liabilities");
+  eS.append("rect").attr("class", "short_term_liabilities");
   eS.append("rect").attr("class", "equity");
   eS.append("rect").attr("class", "revenue");
   eS.append("rect").attr("class", "operating_income");
@@ -101,7 +94,7 @@ var appendData = function append(){
    .attr("fill", "lightskyblue")
    .attr("x", function(d, i){return padding_left + i * (data_width );})
    .attr("width", bs_width)
-//   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
    .attr("y", function(d){return h - padding_bottom - scaleY(d["fixed_asset"] - domainMin);})
    .attr("height", function(d){return scaleY(d["fixed_asset"]);});
 
@@ -109,52 +102,40 @@ var appendData = function append(){
    .attr("fill", "royalblue")
    .attr("x", function(d, i){return padding_left + i * (data_width );})
    .attr("width", bs_width)
-//   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)              
+   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)              
    .attr("y", function(d){return h - padding_bottom - scaleY(d["fixed_asset"] + d["current_asset"] - domainMin) ;})
    .attr("height", function(d){return scaleY(d["current_asset"]);});
 
- console.log("fuga2")  //ここから
 
-  d3.selectAll(".long-term_liabilities") 
+  d3.selectAll(".long_term_liabilities") 
    .attr("fill", "lightpink")
    .attr("x", function(d, i){return padding_left + i * (data_width) + bs_width;})
    .attr("width", bs_width)
-//   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)             
-   .attr("y", function(d){
-console.log(h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabilities"] - domainMin)) // この戻り値がNaN
-console.log(h)
-console.log(padding_bottom)
-console.log(d["equity"])
-console.log(d["long-term_liabilities"]) //これがundefined
-console.log(domainMin)
-return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabilities"] - domainMin) ;})
-   .attr("height", function(d){return scaleY(d["long-term_liabilities"]);});
+   .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)             
+   .attr("y", function(d){return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long_term_liabilities"] - domainMin) ;})
+   .attr("height", function(d){return scaleY(d["long_term_liabilities"]);});
  
- console.log("fuga3")  //ここまでの間に2回
-  d3.selectAll(".short-term_liabilities")
+  d3.selectAll(".short_term_liabilities")
      .attr("fill", "tomato")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width;})
      .attr("width", bs_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
-     .attr("y", function(d){return h - padding_bottom - scaleY( Math.max(0, d["equity"]) + d["long-term_liabilities"] + d["short-term_liabilities"] - domainMin);})
-     .attr("height", function(d){return scaleY(d["short-term_liabilities"]);});
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("y", function(d){return h - padding_bottom - scaleY( Math.max(0, d["equity"]) + d["long_term_liabilities"] + d["short_term_liabilities"] - domainMin);})
+     .attr("height", function(d){return scaleY(d["short_term_liabilities"]);});
   
   d3.selectAll(".equity")
      .attr("fill", "lightgreen")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width;})
      .attr("width", bs_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
      .attr("y", function(d){return h - padding_bottom - scaleY(Math.max(d["equity"], 0) - domainMin) ;})
-     .attr("height", function(d){
-        console.log(Math.abs(d["equity"]));
-        console.log(scaleY(Math.abs(d["equity"])));
-        return scaleY(Math.abs(d["equity"]));});
+     .attr("height", function(d){return scaleY(Math.abs(d["equity"]));});
   
   d3.selectAll(".revenue")
      .attr("fill", "gold")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types;})
      .attr("width", revenue_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
   
      .attr("y", function(d){return h - padding_bottom - scaleY(d["revenue"] - domainMin);})
      .attr("height", function(d){return scaleY(d["revenue"]);});               
@@ -163,32 +144,32 @@ return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabi
      .attr("fill", "greenyellow")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types;})
      .attr("width", revenue_width * 0.8)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
-     .attr("y", function(d){return h - padding_bottom - scaleY(d["operating_income"] - domainMin) ;})
-     .attr("height", function(d){return scaleY(d["operating_income"]);});               
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("y", function(d){return h - padding_bottom + scaleY(domainMin) - Math.max(0, scaleY(d["operating_income"])) ;})
+     .attr("height", function(d){return Math.abs(scaleY(d["operating_income"]));});               
   
   d3.selectAll(".ibit")
      .attr("fill", "limegreen")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types;})
      .attr("width", revenue_width * 0.5)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
-     .attr("y", function(d){return h - padding_bottom- scaleY(d["ibit"] - domainMin);})
-     .attr("height", function(d){return scaleY(d["ibit"]);});
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("y", function(d){return  h - padding_bottom + scaleY(domainMin) - Math.max(0, scaleY(d["ibit"]));})
+     .attr("height", function(d){return Math.abs(scaleY(d["ibit"]));});
   
   d3.selectAll(".net_income")
      .attr("fill", "lime")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types;})
      .attr("width", revenue_width * 0.3)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
-     .attr("y", function(d){return h - padding_bottom -scaleY(d["net_income"] - domainMin);})
-     .attr("height", function(d){return scaleY(d["net_income"]);});
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("y", function(d){return  h - padding_bottom + scaleY(domainMin) - Math.max(0, scaleY(d["net_income"]));})
+     .attr("height", function(d){return Math.abs(scaleY(d["net_income"]));});
   
   
   d3.selectAll(".operation_cashflow")
-     .attr("fill", "#38849A") //#A86780 #ADB853
+     .attr("fill", "#38849A") 
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types;})
      .attr("width", cashflow_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
      .attr("y", function(d){
         return h - padding_bottom + scaleY(domainMin) - scaleY( Math.max(0, d["operation_cashflow"]));
      })
@@ -199,7 +180,7 @@ return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabi
      .attr("fill", "#A86780")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + cashflow_width + padding_between_cashflows;})
      .attr("width", cashflow_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
      .attr("y", function(d){
         return h - padding_bottom + scaleY(domainMin)
               - scaleY( d["operation_cashflow"])
@@ -212,7 +193,7 @@ return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabi
      .attr("fill", "#ADB853")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + 2 *( cashflow_width + padding_between_cashflows);})
      .attr("width", cashflow_width)
-//     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
+     .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
      .attr("y", function(d){
         return h - padding_bottom + scaleY(domainMin)
               - scaleY( d["operation_cashflow"])
@@ -221,7 +202,9 @@ return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabi
      .attr("height", function(d){return scaleY( Math.abs(d["investment_cashflow"]));});
 
   d3.selectAll(".o_to_f")
-//     .transition().delay(transition_delay + transition_duration - 30)
+     .attr("y1", function(d){ return h - padding_bottom + scaleY(domainMin); })
+     .attr("y2", function(d){ return h - padding_bottom + scaleY(domainMin);})
+     .transition().delay(transition_delay).duration(transition_duration)
      .attr("stroke", "black")
      .attr("stroke-width", "0.5pt")
      .attr("stroke-dasharray", "0.2, 0.2")
@@ -238,7 +221,13 @@ return h - padding_bottom- scaleY( Math.max(0, d["equity"]) + d["long-term_liabi
      })
   
   d3.selectAll(".f_to_i")
-//     .transition().delay(transition_delay + transition_duration - 30)
+     .attr("y1", function(d){
+        return h - padding_bottom + scaleY(domainMin)
+     })
+     .attr("y2", function(d){
+        return h - padding_bottom + scaleY(domainMin)
+     })
+     .transition().delay(transition_delay).duration(transition_duration)
      .attr("stroke", "black")
      .attr("stroke-width", "0.5pt")
      .attr("stroke-dasharray", "0.2, 0.2")

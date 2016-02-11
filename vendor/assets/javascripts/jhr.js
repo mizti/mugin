@@ -1,8 +1,9 @@
-var JHR = function ( url, data, fun ) {
+var JHR = function ( url, method, data, fun ) {
 	var xhr = new XMLHttpRequest();
 	xhr.responseJSON = null;
 	
-	xhr.open( 'POST', url );
+	//xhr.open( 'POST', url );
+	xhr.open( method, url );
 	xhr.setRequestHeader( 'Content-Type', 'application/json' );
 	xhr.addEventListener( 'load',  function () {
 		xhr.responseJSON = JSON.parse( xhr.responseText );

@@ -7,7 +7,9 @@ class CompanyController < ApplicationController
   end
 
   def show
-    @company = {}
+    #@company = {}
+    p "session@show"
+    p session["data"]
   end
 
   def add
@@ -16,6 +18,10 @@ class CompanyController < ApplicationController
     end
     hash = {"ticker" => "1111", "year" => "2015"}
     session["data"].push hash
+    hash = {"ticker" => "1112", "year" => "2015"}
+    session["data"].push hash
+    p "session@add"
+    p session["data"]
     redirect_to("/company/show")
   end
 
