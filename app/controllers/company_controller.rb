@@ -8,20 +8,17 @@ class CompanyController < ApplicationController
 
   def show
     #@company = {}
-    p "session@show"
-    p session["data"]
   end
 
   def add
     if session["data"] == nil or session["data"].class != Array then
       session["data"] = []
     end
-    hash = {"ticker" => "1111", "year" => "2015"}
-    session["data"].push hash
-    hash = {"ticker" => "1112", "year" => "2015"}
-    session["data"].push hash
-    p "session@add"
-    p session["data"]
+    if params["ticker"] and params["year"] then
+      hash = {"ticker" => params["ticker"].to_s, "year" => params["year"].to_s, "timestamp" => Time.now.to_i}
+      session["data"].push hash
+    end
+
     redirect_to("/company/show")
   end
 
@@ -29,6 +26,7 @@ class CompanyController < ApplicationController
     @company = {}
     if params[:ticker] != nil and params[:year] != nil
       @company = Company.where(ticker: params[:ticker]).where(year: params[:year]).first
+      @company[:timestamp] = params[:timestamp]
       if @company == nil then 
         render :nothing => true
       else

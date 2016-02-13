@@ -3,16 +3,27 @@
 
 <%= javascript_tag do %>
   var data_source = <%= session["data"].to_json.html_safe %>;
-  console.log(data_source)
   if (!data_source) { data_source = [] }
 
   for(var i in data_source){
     $("#output").append("<li>" + data_source[i].ticker + "</li>");
   }
 
-  dataset = []
+  var dataset = []
+  var done = 0;
   for (var i in data_source){
-    console.log(data_source[i]);
-    JHR(data_source[i].ticker+"/year/"+data_source[i].year, "GET", [], function(response, xhr){ dataset.push(response); console.log(dataset); appendData(); });
+    JHR(data_source[i].ticker + "/year/" + data_source[i].year + "?timestamp=" + data_source[i].timestamp, "GET", [], 
+    function(response, xhr){
+      dataset.push(response);
+      done = done + 1;
+      if(done == data_source.length){
+        dataset.sort(function(a,b){ 
+          if(a.timestamp < b.timestamp) return -1;
+          if(a.timestamp > b.timestamp) return 1;
+          return 0;
+        })
+        appendData();
+      }
+    });
   }
 <% end %>

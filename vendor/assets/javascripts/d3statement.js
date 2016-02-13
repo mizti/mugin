@@ -1,6 +1,6 @@
 // delay
-var transition_delay = 100;
-var transition_duration = 380;
+var transition_delay = 0;
+var transition_duration = 320;
 
 // canvas size 
 var w = 800;
@@ -59,7 +59,8 @@ var appendData = function append(){
   scaleY.range([0, h - padding_bottom - padding_top]);
   var eS = d3.select(".graph_canvas")
               .selectAll("rect")
-              .data(dataset, function(d){return d.ticker + d.year}).enter();
+              //.data(dataset, function(d){return d.ticker + d.year}).enter();
+              .data(dataset, function(d){return d.timestamp}).enter();
 
   eS.append("line").attr("class", "zero");
   eS.append("rect").attr("class", "fixed_asset");
@@ -76,20 +77,19 @@ var appendData = function append(){
   eS.append("rect").attr("class", "investment_cashflow");
   eS.append("line").attr("class", "o_to_f");
   eS.append("line").attr("class", "f_to_i");
-  
+
   d3.selectAll(".zero")
    .attr("stroke", "black")
    .attr("stroke-width", "0.5pt")
    .attr("fill", "none")
-   .attr("x1", function(d, i){return padding_left + 0.9 * i * (data_width);})
-   .attr("x2", function(d, i){return padding_left + (i + 1 )* (data_width);})
-   .attr("y1", function(d){
-      return h - padding_bottom + scaleY(domainMin);
-   })
-   .attr("y2", function(d){
-      return h - padding_bottom + scaleY(domainMin);
-   })
-
+   //.attr("x1", function(d, i){return padding_left + 0.9 * i * (data_width);})
+   //.attr("x2", function(d, i){return padding_left + (i + 1 )* (data_width);})
+   .attr("x1", padding_left / 2)
+   .attr("x2", w - padding_left * 2)
+   .attr("y1", h - padding_bottom + scaleY(domainMin))
+   .attr("y2", h - padding_bottom + scaleY(domainMin))
+/*
+*/
   d3.selectAll(".fixed_asset")
    .attr("fill", "lightskyblue")
    .attr("x", function(d, i){return padding_left + i * (data_width );})
@@ -202,6 +202,8 @@ var appendData = function append(){
      .attr("height", function(d){return scaleY( Math.abs(d["investment_cashflow"]));});
 
   d3.selectAll(".o_to_f")
+     .attr("x1", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + cashflow_width;})
+     .attr("x2", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + cashflow_width + padding_between_cashflows;})
      .attr("y1", function(d){ return h - padding_bottom + scaleY(domainMin); })
      .attr("y2", function(d){ return h - padding_bottom + scaleY(domainMin);})
      .transition().delay(transition_delay).duration(transition_duration)
@@ -221,6 +223,8 @@ var appendData = function append(){
      })
   
   d3.selectAll(".f_to_i")
+     .attr("x1", function(d, i){return padding_left + i * (data_width) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + cashflow_width + padding_between_cashflows + cashflow_width;})
+     .attr("x2", function(d, i){return padding_left + i * (data_width) + bs_width * 2 + padding_between_types + revenue_width + padding_between_types + cashflow_width + padding_between_cashflows + cashflow_width + padding_between_cashflows;})
      .attr("y1", function(d){
         return h - padding_bottom + scaleY(domainMin)
      })
