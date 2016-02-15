@@ -27,3 +27,9 @@
     });
   }
 <% end %>
+
+<%= form_tag("/company/search", method: "get") do %>
+  <%= label_tag(:q, "ティッカーか社名、年度を指定") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>

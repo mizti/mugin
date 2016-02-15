@@ -1,9 +1,26 @@
 class CompanyController < ApplicationController
   respond_to :json
   def index
+    @search_form = CompanySearchForm.new(params[:search])
+    @companies = @search_form.search   
   end
 
   def search
+    p "@search"
+    p params
+    p params["q"]
+
+    if(params["q"]!= "" and params["q"] != nil) then
+      @search_result = []
+      # q = yearのレコードを取得
+      @search_result.concat Company.where(year: params["q"])
+      # q = tickerのレコードを取得
+      @search_result.concat Company.where(ticker: params["q"])
+      # q = nameのレコードを取得
+      @search_result.concat Company.where("name like ?","%#{params['q']}%")
+      p @search_result
+    end
+
   end
 
   def show

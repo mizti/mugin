@@ -1,5 +1,24 @@
-<%= form_for Company.new do |f| %>
-  <%= f.label :ticker %>
-  <%= f.text_field :ticker %>
-  <%= f.submit %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>year</th>
+      <th>ticker</th>
+      <th>name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @search_result.each do |c| %>
+    <tr>
+      <td> <%= c.year %> </td>
+      <td> <%= c.ticker %> </td>
+      <td> <%= c.name %> </td>
+      <% link = "/company/add/#{c.ticker}/year/#{c.year}" %>
+      <td> <%= link_to "追加する", link %> </td>  
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= link_to "戻る", "/company/show" %>

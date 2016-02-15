@@ -5,7 +5,6 @@ TODO:
 あと、最悪四季報を買えば http://hatakazu.hatenablog.com/entry/2012/06/14/212847 とかでいけるかも
 
 ・Site
-tickerか名前から検索できる箱/検索結果を表示する画面を作る
 addした後、グラフを実装する
 bootstrapを適用してみる
 全体のレイアウトを設計する
@@ -15,8 +14,3 @@ bootstrapを適用してみる
 exitの実装
 縦軸の実装
 ラベルの実装
-
-・misc
-
-
-
