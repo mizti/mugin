@@ -40,3 +40,7 @@ gem 'seed-fu', '~> 2.3'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+# test data
+gem "factory_girl_rails"
+gem "faker"

@@ -4,12 +4,17 @@ TODO:
 データソースを探すhttp://ke.kabupro.jp/が使えるかも？
 あと、最悪四季報を買えば http://hatakazu.hatenablog.com/entry/2012/06/14/212847 とかでいけるかも
 
+
 ・Site
-addした後、グラフを実装する
+検索結果がnullの場合や、検索文字列が空だった場合の対処を実装する
+検索結果のページングの実装を行う
 bootstrapを適用してみる
 全体のレイアウトを設計する
 
 ・d3
+吹き出しの実装。候補は二つ。
+ - http://javatechnology.net/jquery/tooltipster/
+ - http://urin.github.io/jquery.balloon.js/index.html
 削除ボタンの実装
 exitの実装
 縦軸の実装

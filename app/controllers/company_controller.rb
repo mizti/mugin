@@ -52,4 +52,10 @@ class CompanyController < ApplicationController
     end
   end
 
+  def clear
+    p "clear!"
+    session["data"] = []
+    redirect_to("/company/show")
+  end
+
 end

@@ -1,13 +1,9 @@
 <ul id="output"></ul>
+<%= javascript_include_tag "jquery.balloon" %>
 <%= javascript_include_tag "d3statement" %>
-
 <%= javascript_tag do %>
   var data_source = <%= session["data"].to_json.html_safe %>;
   if (!data_source) { data_source = [] }
-
-  for(var i in data_source){
-    $("#output").append("<li>" + data_source[i].ticker + "</li>");
-  }
 
   var dataset = []
   var done = 0;
@@ -33,3 +29,5 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+
+<%= link_to "クリアー！", "/company/clear" %>
