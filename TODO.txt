@@ -11,13 +11,9 @@ TODO:
 bootstrapを適用してみる
 全体のレイアウトを設計する
 
+
 ・d3
-吹き出しの実装。候補は二つ。
- - http://javatechnology.net/jquery/tooltipster/
- - http://urin.github.io/jquery.balloon.js/index.html
-   -> svgには使えない。
- - d3+svgのサンプルがあった。これを使おう。http://blog.qaramell.com/hunzy/2121
+経常利益バーの追加
 削除ボタンの実装
-exitの実装
 縦軸の実装
 ラベルの実装
