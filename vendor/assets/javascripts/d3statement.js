@@ -17,7 +17,7 @@ var appendData = function append(){
 
   // scaleX
   var scaleX = d3.scale.linear();
-  var padding_left = 80;
+  var padding_left = 70;
   scaleX.domain([0, (w - padding_left) / 2])
   scaleX.range([0, (w - padding_left) / Math.max(3, dataset.length)])
 
@@ -33,7 +33,7 @@ var appendData = function append(){
 
   // y 
   var padding_bottom = 30;
-  var padding_top = 40;
+  var padding_top = 50;
   
   // scaleY
   var scaleY = d3.scale.linear();
@@ -102,6 +102,7 @@ var appendData = function append(){
      .attr("class", "axis")
      .attr("transform", "translate(" + padding_left + "," + padding_top + ")")
      .call(yAxis)
+     .style("font", "14px 'Helvetica Neue'")
 
   // zero line
   d3.selectAll(".zero")
@@ -123,12 +124,25 @@ var appendData = function append(){
     }
   });
 
+  // company name label
+  eS.append("foreignObject")
+      .attr("width", data_width)
+      .attr("height", 1000)
+      .style("font", "14px 'Helvetica Neue'")
+      .attr("class", "label")
+    .append("xhtml:body")
+  d3.selectAll(".label")
+      .attr("x", function(d, i){return padding_left + i * (data_width)} )
+      .attr("y", padding_top * 0)
+      .html(function(d){console.log(d); return d["name"] + "<br/>" + d["year"] + "年"})
+      .style("text-align", "center")
+
   // boundary box
   d3.selectAll(".bound")
    .attr("fill", "grey") // temp
    .attr("fill-opacity", "0")
    .attr("stroke", "black")
-   .attr("stroke-width", "2")
+   .attr("stroke-width", "0.3")
    .attr("x", function(d, i){return padding_left + i * (data_width);})
    .attr("width", data_width)
    .attr("y", function(d){return h - padding_bottom - scaleY(Math.abs(domainMax - domainMin));})
