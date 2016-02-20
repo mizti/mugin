@@ -21,7 +21,7 @@ var appendData = function append(){
   scaleX.range([0, w / Math.max(2, dataset.length)])
 
   // x
-  var padding_left = scaleX(20);
+  var padding_left = scaleX(80);
   var bs_width = scaleX(30);
   var revenue_width = scaleX(40);
   var cashflow_width = scaleX(25);
@@ -69,18 +69,18 @@ var appendData = function append(){
 
   eS.append("rect").attr("class", "bound");
   eS.append("line").attr("class", "zero");
-  eS.append("rect").attr("class", "fixed_asset");
-  eS.append("rect").attr("class", "current_asset");
-  eS.append("rect").attr("class", "long_term_liabilities");
-  eS.append("rect").attr("class", "short_term_liabilities");
-  eS.append("rect").attr("class", "equity");
-  eS.append("rect").attr("class", "revenue");
-  eS.append("rect").attr("class", "operating_income");
-  eS.append("rect").attr("class", "ibit");
-  eS.append("rect").attr("class", "net_income");
-  eS.append("rect").attr("class", "operation_cashflow");
-  eS.append("rect").attr("class", "financing_cashflow");
-  eS.append("rect").attr("class", "investment_cashflow");
+  eS.append("rect").attr("class", "fixed_asset").attr("data-display-name", "固定資産");
+  eS.append("rect").attr("class", "current_asset").attr("data-display-name", "流動資産");
+  eS.append("rect").attr("class", "long_term_liabilities").attr("data-display-name", "固定負債");
+  eS.append("rect").attr("class", "short_term_liabilities").attr("data-display-name", "流動負債");
+  eS.append("rect").attr("class", "equity").attr("data-display-name", "純資産");
+  eS.append("rect").attr("class", "revenue").attr("data-display-name", "売上高");
+  eS.append("rect").attr("class", "operating_income").attr("data-display-name", "営業利益");
+  eS.append("rect").attr("class", "ibit").attr("data-display-name", "税引前当期純利益");
+  eS.append("rect").attr("class", "net_income").attr("data-display-name", "当期純利益");
+  eS.append("rect").attr("class", "operation_cashflow").attr("data-display-name", "営業キャッシュフロー");
+  eS.append("rect").attr("class", "financing_cashflow").attr("data-display-name", "財務キャッシュフロー");
+  eS.append("rect").attr("class", "investment_cashflow").attr("data-display-name", "投資キャッシュフロー");
   eS.append("line").attr("class", "o_to_f");
   eS.append("line").attr("class", "f_to_i");
 
@@ -88,14 +88,21 @@ var appendData = function append(){
    .attr("stroke", "black")
    .attr("stroke-width", "0.5pt")
    .attr("fill", "none")
-   //.attr("x1", function(d, i){return padding_left + 0.9 * i * (data_width);})
-   //.attr("x2", function(d, i){return padding_left + (i + 1 )* (data_width);})
    .attr("x1", padding_left / 2)
    .attr("x2", w - padding_left * 2)
    .attr("y1", h - padding_bottom + scaleY(domainMin))
    .attr("y2", h - padding_bottom + scaleY(domainMin))
-/*
-*/
+
+  $('svg rect').tipsy({ 
+    gravity: 'w', 
+    html: true, 
+    title: function() {
+    // var d = this.__data__, c = colors(d.i);
+    // return 'Hi there! My color is <span style="color:' + c + '">' + c + '</span>';
+      var d = this.__data__;
+      return this.getAttribute("data-display-name")+": ";
+    }
+  });
 
   d3.selectAll(".bound")
    .attr("fill", "grey") // temp
@@ -155,8 +162,8 @@ var appendData = function append(){
      .attr("height", 0).attr("y", function(d){return h - padding_bottom + scaleY(domainMin);}).transition().delay(transition_delay).duration(transition_duration)
   
      .attr("y", function(d){return h - padding_bottom - scaleY(d["revenue"] - domainMin);})
-     .attr("height", function(d){return scaleY(d["revenue"]);});               
-  
+     .attr("height", function(d){return scaleY(d["revenue"]);})
+ 
   d3.selectAll(".operating_income")
      .attr("fill", "greenyellow")
      .attr("x", function(d, i){return padding_left + i * (data_width ) + bs_width * 2 + padding_between_types + padding_between_data;})
