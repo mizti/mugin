@@ -6,7 +6,7 @@ var transition_duration = 320;
 var w = 800;
 var h = 600;
 
-d3.select("body")
+d3.select("#main-content")
   .append("svg")
     .attr("width", w)
     .attr("height", h)
@@ -137,6 +137,7 @@ var appendData = function append(){
       .attr("y", padding_top * 0)
       .html(function(d){console.log(d); return d["name"] + "<br/>" + d["year"] + "年"})
       .style("text-align", "center")
+      .style("color", "black")
 
   // boundary box
   d3.selectAll(".bound")

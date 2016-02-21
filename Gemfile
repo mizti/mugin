@@ -48,3 +48,5 @@ gem 'seed-fu', '~> 2.3'
 # test data
 gem "factory_girl_rails"
 gem "faker"
+
+gem 'sprockets', '2.2.2' 
