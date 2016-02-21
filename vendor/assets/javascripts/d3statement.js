@@ -18,6 +18,7 @@ var appendData = function append(){
   // scaleX
   var scaleX = d3.scale.linear();
   var padding_left = 70;
+  
   scaleX.domain([0, (w - padding_left) / 2])
   scaleX.range([0, (w - padding_left) / Math.max(3, dataset.length)])
 
@@ -95,7 +96,7 @@ var appendData = function append(){
   yAxis.orient("left")
        .ticks(8)
        .tickSize(10)
-       .innerTickSize(10)
+       .innerTickSize(-1 * data_width * Math.max(3, dataset.length))
        .outerTickSize(0)
        .tickPadding(3)
   eS.append("g")
@@ -110,7 +111,7 @@ var appendData = function append(){
    .attr("stroke-width", "0.5pt")
    .attr("fill", "none")
    .attr("x1", padding_left)
-   .attr("x2", padding_left + data_width * 3)
+   .attr("x2", padding_left + data_width * Math.max(3, dataset.length))
    .attr("y1", h - padding_bottom + scaleY(domainMin))
    .attr("y2", h - padding_bottom + scaleY(domainMin))
 
@@ -139,10 +140,11 @@ var appendData = function append(){
 
   // boundary box
   d3.selectAll(".bound")
-   .attr("fill", "grey") // temp
+   .attr("fill", "black") // temp
    .attr("fill-opacity", "0")
    .attr("stroke", "black")
    .attr("stroke-width", "0.3")
+   .attr("stroke-opacity", "0.3")
    .attr("x", function(d, i){return padding_left + i * (data_width);})
    .attr("width", data_width)
    .attr("y", function(d){return h - padding_bottom - scaleY(Math.abs(domainMax - domainMin));})
