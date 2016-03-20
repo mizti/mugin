@@ -20,7 +20,7 @@ var appendData = function append(){
   var padding_left = 70;
   
   scaleX.domain([0, (w - padding_left) / 2])
-  scaleX.range([0, (w - padding_left) / Math.max(3, dataset.length)])
+  scaleX.range([0, (w - padding_left) / Math.max(2, dataset.length)])
 
   // x
   var bs_width = scaleX(40);

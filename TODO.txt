@@ -2,11 +2,13 @@ TODO:
 ・データ
 データソースを探すhttp://ke.kabupro.jp/が使えるかも？
 あと、最悪四季報を買えば http://hatakazu.hatenablog.com/entry/2012/06/14/212847 とかでいけるかも
+もしくはXBRLを自分で拾う？
+http://qiita.com/NaoyaOura/items/4f613525063d0c8d6653
 
 ・Site
+あと何ができれば嬉しいかを整理する
 検索結果がnullの場合や、検索文字列が空だった場合の対処を実装する
 検索結果のページングの実装を行う
-bootstrapを適用してみる
 全体のレイアウトを設計する
 
 ・d3
