@@ -10,8 +10,8 @@ class CompanyController < ApplicationController
     p params
     p params["q"]
 
+    @search_result = []
     if(params["q"]!= "" and params["q"] != nil) then
-      @search_result = []
       # q = yearのレコードを取得
       @search_result.concat Company.where(year: params["q"])
       # q = tickerのレコードを取得
